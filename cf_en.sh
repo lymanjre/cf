@@ -451,10 +451,10 @@ file=$(echo $url | cut -f 2- -d'/')
 clear
 while true
 do
-	echo "1. IPV4preferred(TLS)"
-	echo "2. IPV4 preferred"
-	echo "3. IPV6 preferred(TLS)"
-	echo "4. IPV6 preferred"
+	echo "1. preferred IPV4 (TLS)"
+	echo "2. preferred IPV4"
+	echo "3. preferred IPV6 (TLS)"
+	echo "4. preferred IPV6"
 	echo "5. Single IP speed measurement(TLS)"
 	echo "6. Single IP speed measurement"
 	echo "7. Empty the cache"
