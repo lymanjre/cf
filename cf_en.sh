@@ -390,7 +390,7 @@ if [ -z "$port" ]
 then
 	port=443
 fi
-echo "正在测速 $ip 端口 $port"
+echo "is measuring speed $ip port $port"
 speed_download=$(curl --resolve $domain:$port:$ip https://$domain:$port/$file -o /dev/null --connect-timeout 5 --max-time 15 -w %{speed_download} | awk -F\. '{printf ("%d\n",$1/1024)}')
 }
 
@@ -405,7 +405,7 @@ if [ -z "$port" ]
 then
 	port=80
 fi
-echo "is measuring speed $ip port $port"
+echo "measuring speed $ip port $port"
 if [ $(echo $ip | grep : | wc -l) == 0 ]
 then
 	speed_download=$(curl -x $ip:$port http://$domain:$port/$file -o /dev/null --connect-timeout 5 --max-time 15 -w %{speed_download} | awk -F\. '{printf ("%d\n",$1/1024)}')
@@ -419,8 +419,7 @@ clear
 echo "If the download of the following files fails, you can manually visit the URL to download and save them to the same directory"
 echo "https://www.baipiao.eu.org/cloudflare/colo Save as colo.txt"
 echo "https://www.baipiao.eu.org/cloudflare/url Save as url.txt"
-echo "https://www.baipiao.eu.org/cloudflare/ips-v4 Save as ips-v4.txt"
-echo "https://www.baipiao.eu.org/cloudflare/ips-v6 Save as ips-v6.txt"
+echo "//http://bot.sudoer.net/best.cf.iran.all Save as ips-v4.txt"
 while true
 do
 	if [ ! -f "colo.txt" ]
@@ -433,12 +432,8 @@ do
 		curl --retry 2 -s https://www.baipiao.eu.org/cloudflare/url -o url.txt
 	elif [ ! -f "ips-v4.txt" ]
 	then
-		echo "Download IPV4 data from server ips-v4.txt"
-		curl --retry 2 -s https://www.baipiao.eu.org/cloudflare/ips-v4 -o ips-v4.txt
-	elif [ ! -f "ips-v6.txt" ]
-	then
-		echo "Download IPV6 data from server ips-v6.txt"
-		curl --retry 2 -s https://www.baipiao.eu.org/cloudflare/ips-v6 -o ips-v6.txt
+		echo "Download IPV4 data from Morteza Bot ips-v4.txt"
+		curl http://bot.sudoer.net/best.cf.iran.all | cut -f 1 >> ips-v4.txt
 	else
 		break
 	fi
@@ -451,10 +446,10 @@ file=$(echo $url | cut -f 2- -d'/')
 clear
 while true
 do
-	echo "1. preferred IPV4 (TLS)"
-	echo "2. preferred IPV4"
-	echo "3. preferred IPV6 (TLS)"
-	echo "4. preferred IPV6"
+	echo "1. IPV4preferred(TLS)"
+	echo "2. IPV4 preferred"
+	echo "3. IPV6 preferred(TLS)"
+	echo "4. IPV6 preferred"
 	echo "5. Single IP speed measurement(TLS)"
 	echo "6. Single IP speed measurement"
 	echo "7. Empty the cache"
